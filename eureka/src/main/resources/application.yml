@@ -12,7 +12,7 @@ eureka:
     hostname: localhost # 服务所在主机（一般都是配置域名）；本地测试的话，需要在 host 文件中指定虚拟域名
     preferIpAddress: true
   client:
-    #    service-url:
-    #      defaultZone: http://  :28761/eureka # eureka服务器的地址
+    service-url:
+      defaultZone: http://localhost:3001/eureka # eureka服务器的地址
     register-with-eureka: false # 是否将自己也注册到其他eureka节点上。一般设置为true或者默认即可，这样才会在eureka控制台上看到所有的eureka集群列表信息
     fetch-registry: false # 获取注册列表

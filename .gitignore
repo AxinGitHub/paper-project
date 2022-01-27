@@ -1,4 +1,3 @@
 /.idea/
-/config/target
-/eureka/target
+/*/target
 *.iml

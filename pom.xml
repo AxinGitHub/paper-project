@@ -16,6 +16,8 @@
     <modules>
         <module>eureka</module>
         <module>config</module>
+        <module>zuul</module>
+        <module>core</module>
     </modules>
 
     <properties>
