@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 项目模块 -->
+    <groupId>com.paper.cloud</groupId>
+    <artifactId>papersoft</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- 项目介绍 -->
+    <name>papersoft</name>
+    <description>Demo project for Spring Boot</description>
+
+    <modules>
+        <module>eureka</module>
+        <module>config</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+        <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
+        <spring.cloud.version>Dalston.SR4</spring.cloud.version>
+        <eureka.starter.version>1.4.2.RELEASE</eureka.starter.version>
+    </properties>
+
+    <!-- 此项配置的意思是：pom.xml中的parent引用，可以引用我们自己项目的parent，而不是springcloud的parent。方便项目模块的扩展和管理。必须配置在dependencyManagement节点中 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <!--项目构建配置-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <failOnError>true</failOnError>
+                    <verbose>true</verbose>
+                    <fork>true</fork>
+                    <compilerArgument>-nowarn</compilerArgument>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!-- 设置maven打包的时候跳过junit测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+
+
+    <!-- 使用阿里云maven仓库 ， 建议在本地的maven仓库的settings.xml中配置aliyun的maven，一劳永逸；-->
+    <repositories>
+        <repository>
+            <id>aliyun-maven-repo</id>
+            <name>aliyun-maven-repo</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+</project>
